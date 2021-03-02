@@ -14,7 +14,7 @@ From March 2021 we started meeting virtually every couple of weeks to share expe
 expertise, and to discuss various aspects of computational Earth sciences. The meeting
 schedule (with links to material) is below.
 
-* 3/3/2021: introductions; a look at the Numba high performance python compiler
+* 3/3/2021: introductions; a look at the Numba high performance python compiler ([more info](./coffee-2021-03-03.md))
 * 15/3/2021: bring your software problems
 * 31/3/2021: TBC
 * 12/4/2021: TBC
