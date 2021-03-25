@@ -15,7 +15,7 @@ expertise, and to discuss various aspects of computational Earth sciences. The m
 schedule (with links to material) is below.
 
 * 3/3/2021: introductions; a look at the Numba high performance python compiler ([more info](./coffee-2021-03-03.md))
-* 15/3/2021: bring your software problems
-* 31/3/2021: TBC
+* 15/3/2021: bring your software problems ([more info](./coffee-2021-03-15.md))
+* 31/3/2021: git and github ([more info](./coffee-2021-03-31.md))
 * 12/4/2021: TBC
 
