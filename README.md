@@ -19,6 +19,6 @@ schedule (with links to material) is below.
 * 31/3/2021: git and github ([more info](./coffee-2021-03-31.md))
 * 14/4/2021: data - options and ideas ([more info](./coffee-2021-04-14.md))
 * 26/4/2021: No meeting - clash with EGU
-* 12/5/2021: The ARC cluster - tips and tricks ([more info](../coffee-2021-05-12))
+* 12/5/2021: The ARC cluster - tips and tricks ([more info](../coffee-2021-05-12.md))
 * 24/5/2021: software development and academic career progression
 * 9/6/2021: TBC
