@@ -41,3 +41,25 @@ module load Python/3.6.6-intel-2020b
 ```
 
 Currently not building python: `--download-mpi4py --download-petsc4py`
+
+```
+module load intel/2020b
+ module load OpenMPI/4.0.5-iccifort-2020.4.304
+ module load HDF5/1.10.2-intel-2020b
+ git checkout v3.14
+  508  ./configure --prefix=/home/eart0526/code/petsc-build --with-blaslapack-dir=$MKLROOT --with-hdf5 --download-mumps --download-scalapack --download-parmetis --download-metis --download-cmake --with-debugging=0 --enable-shared --download-pastix --download-ptscotch --with-cxx-dialect=C++11 --download-superlu_dist --download-spooles --download-suitesparse --download-ml --download-hypre --download-hwloc --download-make --FOPTFLAGS='-O2 -xHost' --CXXOPTFLAGS='-O2 -xHost' --COPTFLAGS='-O2 -xHost'
+  509  make PETSC_DIR=/home/eart0526/code/petsc PETSC_ARCH=arch-linux-c-opt all
+  510  make PETSC_DIR=/home/eart0526/code/petsc PETSC_ARCH=arch-linux-c-opt install
+  511  make PETSC_DIR=/home/eart0526/code/petsc-build PETSC_ARCH="" check
+ ```
+ and
+ ```
+ Currently Loaded Modules:
+  1) GCCcore/10.2.0                        7) imkl/2020.4.304-iimpi-2020b       13) hwloc/2.2.0-GCCcore-10.2.0
+  2) zlib/1.2.11-GCCcore-10.2.0            8) intel/2020b                       14) libevent/2.1.12-GCCcore-10.2.0
+  3) binutils/2.35-GCCcore-10.2.0          9) numactl/2.0.13-GCCcore-10.2.0     15) PMIx/3.1.5-GCCcore-10.2.0
+  4) iccifort/2020.4.304                  10) XZ/5.2.5-GCCcore-10.2.0           16) OpenMPI/4.0.5-iccifort-2020.4.304
+  5) impi/2019.9.304-iccifort-2020.4.304  11) libxml2/2.9.10-GCCcore-10.2.0     17) Szip/2.1.1-GCCcore-10.2.0
+  6) iimpi/2020b                          12) libpciaccess/0.16-GCCcore-10.2.0  18) HDF5/1.10.2-intel-2020b
+```
+fails tests with (what looks like) an HDF5 incopmatability with MPI libs. 
