@@ -34,25 +34,34 @@ Do step 1 for the prereqs:
     # synchronize to github
     git -C AxiSEM3D pull
     
-Grrr - the boost libary sources seem to have moved. And to be behind some kind of graphic thing. Download from https://boostorg.jfrog.io/ui/native/main/release/1.73.0/source/
+**Grrr -** the boost libary sources seem to have moved. And to be behind some kind of graphic thing. Download from https://boostorg.jfrog.io/ui/native/main/release/1.73.0/source/
 and copy to ARC. Must be a better way.
 
-make a build dir, cd and do:
+**Double Grrr -** When building with this version of eigen I get an error about `all` not being a present (see below). Instead 
+clone from the gitlab repository and check out an older version (see https://github.com/UMich-BipedLab/LiDARTag/issues/6). This seems to work:
 
-    cmake -Dcxx=mpicxx -Dflags="-O3 -DNDEBUG" -Deigen=$AxiSEM3D_WORK_DIR/dependencies/eigen-master -Dboost=$AxiSEM3D_WORK_DIR/dependencies/boost_1_73_0  -Dfftw=/apps/system/easybuild/software/FFTW/3.3.9-intel-2021a ../AxiSEM3D/SOLVER/
+    git clone https://gitlab.com/libeigen/eigen.git
+    cd eigen
+    git checkout 6f0f6f792e441c32727ed945686fefe02e6bdbc6
+    cd ..
     
-    make
+Then make a build dir, cd and do:
+
+    module load FFTW
+    module load METIS
+    module load netCDF
+    module load CMake
+    module load imkl/2021.2.0-iimpi-2021a    
+    cmake -Dcxx=mpicxx -Dflags="-std=c++17 -O3 -DNDEBUG" -Deigen=$AxiSEM3D_WORK_DIR/dependencies/eigen -Dboost=$AxiSEM3D_WORK_DIR/dependencies/boost_1_73_0  -Dfftw=/apps/system/easybuild/software/FFTW/3.3.9-intel-2021a ../AxiSEM3D/SOLVER/
+    make -j8
     
-buidl fails with:
+NB this uses eigen and not eigen-master. Those modle loads keep swapping between gcc versions (which seems a bit
+fragile) but we end up with 3.10 and this does not, by default, support C++17, so we specify that. Anyway, this
+produces an MPI executable. 
+
+With master tarball from eigen, the build fails with:
 
     /home/eart0526/code/AxiSEM3D/AxiSEM3D/SOLVER/src/core/output/station-wise/station/Station.hpp:59:22: error: ‘all’ is not a member of ‘Eigen’
     59 |              (Eigen::all, mNonZeroIndices) *
     
     
-Modules:
-
-   module load FFTW
-   module load METIS
-   module load netCDF
-   module load CMake
-   module load imkl/2021.2.0-iimpi-2021a
