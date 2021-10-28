@@ -65,3 +65,35 @@ With master tarball from eigen, the build fails with:
     59 |              (Eigen::all, mNonZeroIndices) *
     
     
+Running a test
+--------------
+
+Right now, rather than worrying about the mesher etc. I just ran a test that seems to come with the source. Get the data in a directory in your home space root by doing:
+
+    cd 
+    cp -r $AxiSEM3D_WORK_DIR/AxiSEM3D/examples/01_spherical_Earth_PREM_50s .
+    cd 01_spherical_Earth_PREM_50s
+    
+Your input files all now live in `input` which seems to have to be located next to the executable. So copy the executable:
+
+    cp $AxiSEM3D_WORK_DIR/build/axisem3d .
+    
+You also need a job submission script. Mine is:
+
+    #!/bin/bash 
+    #SBATCH --nodes=1 
+    #SBATCH --ntasks-per-node=48
+    #SBATCH --mem-per-cpu=2G
+    #SBATCH --time=00:10:00 
+    #SBATCH --job-name=myjob 
+    #SBATCH --partition=short
+
+    module load FFTW
+    module load METIS
+    module load netCDF
+    module load CMake
+    module load imkl/2021.2.0-iimpi-2021a
+
+    mpirun axisem3d
+    
+Then just `sbatch axisem3d.sub` (i.e. my submission script) to run. For this case 48 cores and 10 mins is overkill... Output shows up in an `output` directory. 
