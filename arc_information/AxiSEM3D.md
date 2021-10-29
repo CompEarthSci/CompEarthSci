@@ -116,3 +116,14 @@ period. It seemed to have worked.
     cd AxiSEM-3D/examples/01_spherical_Earth_PREM_50s
     python -m salvus_mesh_lite.interface AxiSEM --basic.model prem_ani --basic.period 75 --output_file global_mesh__prem_ani__75s.e
     
+
+Postprocessing
+--------------
+
+This is the one step I have not been able to do - there is a postprocessing jupyter notebook in the example but it uses the (depricated) 
+matplotlib basemap plotting libary. I cannot install this on my desktop. Probably worth switching over to cartopy (which is better and 
+supported). Anyway, installing everything else is easy:
+
+    conda activate axisem3d
+    conda install jupyter obspy
+    
