@@ -97,3 +97,22 @@ You also need a job submission script. Mine is:
     mpirun axisem3d
     
 Then just `sbatch axisem3d.sub` (i.e. my submission script) to run. For this case 48 cores and 10 mins is overkill... Output shows up in an `output` directory. 
+
+
+Mesher
+------
+
+I decided to install this on my desktop. For added complexity this is a mac mini with the new apple (ARM) processor and it looks like pip struggles to 
+build the compiled modules by default. To work around this I install all the dependances from conda-forge before installing SalvusMeshLite thusly:
+
+    conda create -n axisem3d python=3.8 numpy scipy matplotlib lxml jsonschema h5py numba pyexodus pyyaml pytest flake8 pytest-mpl
+    conda activate axisem3d
+    pip install https://gitlab.com/Salvus/SalvusMeshLite/-/archive/master/SalvusMeshLite-master.zip
+    
+This seems to have worked. To check (in the axisem3d environment) I cloned the axisem repository and ran the mesher in the example direcotry with a different
+period. It seemed to have worked.
+
+    git clone git@github.com:kuangdai/AxiSEM-3D.git
+    cd AxiSEM-3D/examples/01_spherical_Earth_PREM_50s
+    python -m salvus_mesh_lite.interface AxiSEM --basic.model prem_ani --basic.period 75 --output_file global_mesh__prem_ani__75s.e
+    
