@@ -26,6 +26,11 @@ session. Some examples (for future reference) can be found below.
 5. And serial  `make install COMMSARCH=serial MATHLIBS=mkl FFT=MKL`
 6. Run a test job. Note that executing on a head node fails with `Please verify that both the operating system and the processor support Intel(R) AVX512F, AVX512DQ, AVX512CD, AVX512BW and AVX512VL instructions.`
 
+2023 I used:
+* CASTEP-22.11
+* module load intel/2022b
+* make install COMMSARCH=mpi MATHLIBS=mkl FFT=mkl 
+
 ### PETSc
 
 What I ended up doing was:
